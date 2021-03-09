@@ -6,9 +6,11 @@ import os
 
 class CpuinfoConan(ConanFile):
     name = "cpuinfo"
-    description = "Open standard for machine learning interoperability."
+    description = "cpuinfo is a library to detect essential for performance " \
+                  "optimization information about host CPU."
     license = "BSD-2-Clause"
-    topics = ("conan", "cpuinfo", "cpu", "cpuid", "cpu-cache", "cpu-model", "instruction-set", "cpu-topology")
+    topics = ("conan", "cpuinfo", "cpu", "cpuid", "cpu-cache", "cpu-model",
+              "instruction-set", "cpu-topology")
     homepage = "https://github.com/pytorch/cpuinfo"
     url = "https://github.com/conan-io/conan-center-index"
 
