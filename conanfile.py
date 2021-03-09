@@ -1,4 +1,5 @@
 from conans import ConanFile, CMake, tools
+from conans.errors import ConanInvalidConfiguration
 import glob
 import os
 
@@ -38,6 +39,8 @@ class CpuinfoConan(ConanFile):
             del self.options.fPIC
         del self.settings.compiler.cppstd
         del self.settings.compiler.libcxx
+        if self.settings.os == "Windows" and self.options.shared:
+            raise ConanInvalidConfiguration("shared cpuinfo not supported on Windows")
 
     def source(self):
         tools.get(**self.conan_data["sources"][self.version])
@@ -70,6 +73,7 @@ class CpuinfoConan(ConanFile):
         return self._cmake
 
     def build(self):
+        self._patch_sources()
         cmake = self._configure_cmake()
         cmake.build()
 
